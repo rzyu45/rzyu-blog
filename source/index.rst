@@ -8,13 +8,8 @@ Rzyu's blog
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
 
-test equation $a+b=c$
+   notes/index.rst
+   research/index.rst
+   bio.md
 
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
