@@ -5,9 +5,10 @@
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
+from datetime import datetime
 
 project = 'myblog'
-copyright = '2024, rzyu'
+copyright = f'{datetime.now().year}, rzyu' 
 author = 'rzyu'
 
 # -- General configuration ---------------------------------------------------
@@ -34,6 +35,23 @@ source_suffix = {
     '.txt': 'markdown',
     '.md': 'markdown',
 }
+
+myst_enable_extensions = [
+    "amsmath",
+    "attrs_inline",
+    "colon_fence",
+    "deflist",
+    "dollarmath",
+    "fieldlist",
+    "html_admonition",
+    "html_image",
+    "linkify",
+    "replacements",
+    "smartquotes",
+    "strikethrough",
+    "substitution",
+    "tasklist",
+]
 
 mathjax3_config = {
     "tex": {

@@ -3,10 +3,7 @@
 Notes
 -----
 
-MIS-GARK
-========
+.. toctree::
+   :maxdepth: 2
 
-WENO schemes
-============
-
-.. include:: weno.rst
+   weno.md
