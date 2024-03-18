@@ -224,9 +224,9 @@ and
 
 $$f^-(u)=\frac{1}{2}\left(f(u)-\alpha u\right).$$
 
-Identify $\bar{u}_i=f^+(u_i)$, then use WENO to reconstruct $\hat{f}^+_{i+1/2}=u_{i+1/2}^-$.
+Identify $\bar{u}_i=f^+(u_i)$, then use WENO to reconstruct $\hat{f}^+_{i+1/2}=u_{i+1/2}^-$ with $\bar{u}_i$s.
 
-Identify $\bar{u}_i=f^-(u_i)$, then use WENO to reconstruct $\hat{f}^-_{i+1/2}=u_{i+1/2}^+$.
+Identify $\bar{u}_i=f^-(u_i)$, then use WENO to reconstruct $\hat{f}^-_{i+1/2}=u_{i+1/2}^+$ with $\bar{u}_i$s.
 
 Finally, we have
 
