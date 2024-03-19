@@ -222,15 +222,47 @@ $$f^+(u)=\frac{1}{2}\left(f(u)+\alpha u\right),$$
 
 and
 
-$$f^-(u)=\frac{1}{2}\left(f(u)-\alpha u\right).$$
+$$f^-(u)=\frac{1}{2}\left(f(u)-\alpha u\right),$$
 
-Identify $\bar{u}_i=f^+(u_i)$, then use WENO to reconstruct $\hat{f}^+_{i+1/2}=u_{i+1/2}^-$ with $\bar{u}_i$s.
+where $\alpha=\max_u|f'(u)|$.
 
-Identify $\bar{u}_i=f^-(u_i)$, then use WENO to reconstruct $\hat{f}^-_{i+1/2}=u_{i+1/2}^+$ with $\bar{u}_i$s.
+![image.png](weno/weno-fdm.png)
 
-Finally, we have
+As shown in the above figure, one can split $\hat{f}_{i+1/2}$ and $\hat{f}_{i-1/2}$ as
 
-$$\hat{f}_{i+1/2}=\hat{f}_{i+1/2}^++\hat{f}_{i+1/2}^-.$$
+$$\hat{f}_{i+1/2}=\hat{f}_{i+1/2}^++\hat{f}_{i+1/2}^-,\quad \hat{f}_{i-1/2}=\hat{f}_{i-1/2}^++\hat{f}_{i-1/2}^-.$$
+
+First, one can reconstruct $\hat{f}_{i+1/2}^-$ and $\hat{f}_{i-1/2}^+$. 
+
+For example when $k=2$, one uses
+
+$$\bar{f}_i=f^+(u_i)=\frac{1}{2}\left(f(u_i)+\alpha u_i\right)$$
+
+to perform WENO reconstruction of $\hat{f}_{i+1/2}^-$ and obtains
+
+$$\hat{f}_{i+1/2}^-=\omega_\text{R}\left(\bar{f}_{i-1},\bar{f}_i, \bar{f}_{i+1}\right),$$
+
+where $\omega_\text{R}$ denotes the WENO reconstruction.
+
+One uses
+
+$$\bar{f}_i=f^-(u_i)=\frac{1}{2}\left(f(u_i)-\alpha u_i\right)$$
+
+to perform WENO reconstruction of $\hat{f}_{i-1/2}^+$ and obtains
+
+$$\hat{f}_{i-1/2}^+=\omega_\text{L}\left(\bar{f}_{i-1},\bar{f}_i, \bar{f}_{i+1}\right).$$
+
+Moving the stencil of $\hat{f}_{i+1/2}^-$ one $\Delta x$ left, one has
+
+$$\hat{f}_{i-1/2}^-=\omega_\text{R}\left(\bar{f}_{i-2},\bar{f}_{i-1}, \bar{f}_{i}\right).$$
+
+Moving the stencil of $\hat{f}_{i-1/2}^+$ one $\Delta x$ right, one has
+
+$$\hat{f}_{i+1/2}^+=\omega_\text{L}\left(\bar{f}_{i},\bar{f}_{i+1}, \bar{f}_{i+2}\right).$$
+
+Finally, 
+
+$$\frac{\mathrm{d}u_i(t)}{\mathrm{d}t}=-\frac{\hat{f}_{i+1/2}^++\hat{f}_{i+1/2}^--\hat{f}_{i-1/2}^+-\hat{f}_{i-1/2}^-}{\Delta x_i}.$$
 
 FVM and FDM are equivalent in the case of linear, constant coefficient 1D PDE.
 ### The Boundary conditions
